@@ -6,10 +6,18 @@ sidebar_position: 8
 
 Xpanse runtime is the running module built on SpringBoot.
 
+`Xpanse Runtime` has two startup methods, one is to use the local terraform module, the other is to
+use the remote terraform-boot service, the default is to use the local terraform
+
 ## Pre-Requisites
 
-1. If running the runtime jar directly, then the host must have `Terraform CLI` installed.
-2. Fully configured Zitadel instance.
+1. If using local terraform module, the `Xpanse Runtime` host must have `Terraform CLI` installed.
+
+2. If using remote terraform-boot service,A remote `Terrafom-boot` service must be deployed.
+   Terrafom-boot reference
+   [here](https://github.com/eclipse-xpanse/terraform-boot/blob/main/README.md).
+
+3. Fully configured Zitadel instance.
 
 ## Properties and Environment Variables
 
@@ -70,6 +78,14 @@ This will automatically set properties required for connecting to our Zitadel te
 ```shell
 $ cd runtime/target
 $ java -jar xpanse-runtime-1.0.0-SNAPSHOT.jar --spring.profiles.active=zitadel,zitadel-testbed
+```
+
+By default, the Xpanse Runtime starts using local terraform. If you want to use the remote
+Terraform-boot service, start the server using the following command
+
+```shell
+$ cd runtime/target
+$ java -jar xpanse-runtime-1.0.0-SNAPSHOT.jar --spring.profiles.active=terraform-boot
 ```
 
 ##### From IDE
